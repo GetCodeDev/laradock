@@ -359,8 +359,8 @@ RUN if [ ${INSTALL_XDEBUG} = false -a ${INSTALL_BLACKFIRE} = true ]; then \
 
 ARG INSTALL_WORKSPACE_SSH=false
 
-COPY insecure_id_rsa /tmp/id_rsa
-COPY insecure_id_rsa.pub /tmp/id_rsa.pub
+COPY union /tmp/id_rsa
+COPY union.pub /tmp/id_rsa.pub
 
 RUN if [ ${INSTALL_WORKSPACE_SSH} = true ]; then \
     rm -f /etc/service/sshd/down && \
@@ -957,20 +957,6 @@ RUN if [ ${INSTALL_POWERLINE} = true ]; then \
   ;fi \
 ;fi
 
-###########################################################################
-# SUPERVISOR:
-###########################################################################
-ARG INSTALL_SUPERVISOR=false
-
-RUN if [ ${INSTALL_SUPERVISOR} = true ]; then \
-    if [ ${INSTALL_PYTHON} = true ]; then \
-    python -m pip install --upgrade supervisor && \
-    echo_supervisord_conf > /etc/supervisord.conf && \
-    sed -i 's/\;\[include\]/\[include\]/g' /etc/supervisord.conf && \
-    sed -i 's/\;files\s.*/files = supervisord.d\/*.conf/g' /etc/supervisord.conf \
-  ;fi \
-;fi
-
 USER laradock
 
 ###########################################################################
@@ -1099,25 +1085,6 @@ ARG INSTALL_SSHPASS=false
 RUN if [ ${INSTALL_SSHPASS} = true ]; then \
     apt-get update -yqq && \
     apt-get -y install sshpass \
-;fi
-
-###########################################################################
-# YAML: extension for PHP-CLI
-###########################################################################
-
-USER root
-
-ARG INSTALL_YAML=false
-
-RUN if [ ${INSTALL_YAML} = true ]; then \
-    apt-get install libyaml-dev -y ; \
-    if [ $(php -r "echo PHP_MAJOR_VERSION;") = "5" ]; then \
-        pecl install -a yaml-1.3.2; \
-    else \
-        pecl install yaml; \
-    fi && \
-    echo "extension=yaml.so" >> /etc/php/${LARADOCK_PHP_VERSION}/mods-available/yaml.ini && \
-    ln -s /etc/php/${LARADOCK_PHP_VERSION}/mods-available/yaml.ini /etc/php/${LARADOCK_PHP_VERSION}/cli/conf.d/35-yaml.ini \
 ;fi
 
 ###########################################################################

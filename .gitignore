@@ -17,3 +17,6 @@
 !/.devcontainer/devcontainer.example.json
 
 .DS_Store
+
+workspace/union
+workspace/union.pub

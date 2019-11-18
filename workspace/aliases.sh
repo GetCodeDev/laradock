@@ -89,6 +89,10 @@ alias reload="source ~/.aliases && echo \"$COL_GREEN ==> Aliases Reloaded... $CO
 alias run="npm run"
 alias tree="xtree"
 
+alias tinker="php artisan tinker"
+alias publish="php artisan theme:publish --extensions"
+alias mm="php artisan make:migration"
+
 # Xvfb
 alias xvfb="Xvfb -ac :0 -screen 0 1024x768x16 &"
 
