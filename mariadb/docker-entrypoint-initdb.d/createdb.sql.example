@@ -16,7 +16,113 @@
 ###     mysql -u root -p < /docker-entrypoint-initdb.d/createdb.sql
 ###
 
+
+
+#------------------------------------------------------------------------------#
+# DEFAULT Databases
+#------------------------------------------------------------------------------#
+
 #CREATE DATABASE IF NOT EXISTS `ala` COLLATE 'utf8_general_ci' ;
 #GRANT ALL ON `ala`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `all` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `all`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `aocds` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `aocds`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `cats831` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `cats831`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `cscrc` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `cscrc`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `demo1` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `demo1`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `flcrc` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `flcrc`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `iatse15` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `iatse15`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `iatse22` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `iatse22`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `iatse665` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `iatse665`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `ibew105` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `ibew105`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `import` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `import`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `ncsrcc` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `ncsrcc`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `oetraining` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `oetraining`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `opeiu29` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `opeiu29`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `opeiu30` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `opeiu30`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `pnsu` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `pnsu`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `pnwrcc` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `pnwrcc`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `proa` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `proa`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `pseofwa` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `pseofwa`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `quadc` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `quadc`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `seiu87` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `seiu87`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `swcarpenters` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `swcarpenters`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `teamsters456` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `teamsters456`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `ua8` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `ua8`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `ua32` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `ua32`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `ua198` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `ua198`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `ua230` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `ua230`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `ua467` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `ua467`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `ua550` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `ua550`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `ua798` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `ua798`.* TO 'default'@'%' ;
+
+#------------------------------------------------------------------------------#
+
+
+
+#------------------------------------------------------------------------------#
+# Your Databases
+#------------------------------------------------------------------------------#
+
+#------------------------------------------------------------------------------#
 
 FLUSH PRIVILEGES ;

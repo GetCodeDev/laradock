@@ -297,12 +297,70 @@ services:
       networks:
         frontend:
           aliases:
-            - union.py-opeiu
-            - union.dpth-ua798
+            - union.ala
+            - union.all
+            - union.aocds
+            - union.cats831
+            - union.cscrc
+            - union.demo1
+            - union.flcrc
+            - union.iatse15
+            - union.iatse22
+            - union.iatse665
+            - union.ibew105
+            - union.import
+            - union.ncsrcc
+            - union.oetraining
+            - union.opeiu29
+            - union.opeiu30
+            - union.pnsu
+            - union.pnwrcc
+            - union.proa
+            - union.pseofwa
+            - union.quadc
+            - union.seiu87
+            - union.swcarpenters
+            - union.teamsters456
+            - union.ua8
+            - union.ua32
+            - union.ua198
+            - union.ua230
+            - union.ua467
+            - union.ua550
+            - union.ua798
         backend:
           aliases:
-            - union.py-opeiu
-            - union.dpth-ua798
+            - union.ala
+            - union.all
+            - union.aocds
+            - union.cats831
+            - union.cscrc
+            - union.demo1
+            - union.flcrc
+            - union.iatse15
+            - union.iatse22
+            - union.iatse665
+            - union.ibew105
+            - union.import
+            - union.ncsrcc
+            - union.oetraining
+            - union.opeiu29
+            - union.opeiu30
+            - union.pnsu
+            - union.pnwrcc
+            - union.proa
+            - union.pseofwa
+            - union.quadc
+            - union.seiu87
+            - union.swcarpenters
+            - union.teamsters456
+            - union.ua8
+            - union.ua32
+            - union.ua198
+            - union.ua230
+            - union.ua467
+            - union.ua550
+            - union.ua798
 
 ### Blackfire ########################################
     blackfire:
@@ -427,7 +485,7 @@ services:
           - no_proxy
           - MARIADB_VERSION=${MARIADB_VERSION}
       volumes:
-        - ${DATA_PATH_HOST}/mariadb:/var/lib/mysql
+        - ${DATA_PATH_HOST_MARIADB}:/var/lib/mysql
         - ${MARIADB_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
       ports:
         - "${MARIADB_PORT}:3306"

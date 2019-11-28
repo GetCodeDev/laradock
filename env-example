@@ -16,6 +16,11 @@ APP_CODE_CONTAINER_FLAG=:cached
 # Choose storage path on your machine. For all storage systems
 DATA_PATH_HOST=~/.laradock/data
 
+# For UBUNTU/MAC
+DATA_PATH_HOST_MARIADB=~/.laradock/data/mariadb
+#For Windows
+#DATA_PATH_HOST_MARIADB=mariadb
+
 ### Drivers ################################################
 
 # All volumes driver
