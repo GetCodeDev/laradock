@@ -1121,6 +1121,18 @@ RUN if [ ${INSTALL_GNU_PARALLEL} = true ]; then \
   apt-get -y install parallel \
 ;fi
 
+###########################################################################
+# WKHTMLTOPDF
+###########################################################################
+ARG INSTALL_WKHTMLTOPDF=false
+
+RUN if [ ${INSTALL_WKHTMLTOPDF} = true ]; then \
+ apt-get -y install fontconfig libxext6 libxrender1 xfonts-utils wget \
+   libfontenc1 x11-common xfonts-75dpi xfonts-base \
+ && wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.xenial_amd64.deb \
+ && dpkg -i --force-depends wkhtmltox_0.12.5-1.xenial_amd64.deb \
+;fi
+
 
 ###########################################################################
 # Check PHP version:

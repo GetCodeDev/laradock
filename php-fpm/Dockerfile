@@ -768,6 +768,18 @@ RUN if [ ${INSTALL_MAILPARSE} = true ]; then \
 ;fi
 
 ###########################################################################
+# WKHTMLTOPDF
+###########################################################################
+ARG INSTALL_WKHTMLTOPDF=false
+
+RUN if [ ${INSTALL_WKHTMLTOPDF} = true ]; then \
+ apt-get update && apt-get -y install fontconfig libxext6 libxrender1 xfonts-utils wget \
+     libfontenc1 libxfont1 x11-common xfonts-75dpi xfonts-base \
+ && curl -L -o /tmp/wkhtmltopdf.deb https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox_0.12.5-1.stretch_amd64.deb \
+ && dpkg -i --force-depends /tmp/wkhtmltopdf.deb \
+;fi
+
+###########################################################################
 # Check PHP version:
 ###########################################################################
 
