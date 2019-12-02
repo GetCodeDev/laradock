@@ -123,6 +123,7 @@ services:
           - INSTALL_POWERLINE=${WORKSPACE_INSTALL_POWERLINE}
           - INSTALL_FFMPEG=${WORKSPACE_INSTALL_FFMPEG}
           - INSTALL_GNU_PARALLEL=${WORKSPACE_INSTALL_GNU_PARALLEL}
+          - INSTALL_WKHTMLTOPDF=${WORKSPACE_INSTALL_WKHTMLTOPDF}
           - http_proxy
           - https_proxy
           - no_proxy
@@ -196,6 +197,7 @@ services:
           - ADDITIONAL_LOCALES=${PHP_FPM_ADDITIONAL_LOCALES}
           - INSTALL_FFMPEG=${PHP_FPM_FFMPEG}
           - INSTALL_XHPROF=${PHP_FPM_INSTALL_XHPROF}
+          - INSTALL_WKHTMLTOPDF=${PHP_FPM_INSTALL_WKHTMLTOPDF}
           - http_proxy
           - https_proxy
           - no_proxy
