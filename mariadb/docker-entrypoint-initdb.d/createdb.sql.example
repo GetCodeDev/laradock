@@ -52,6 +52,9 @@
 #CREATE DATABASE IF NOT EXISTS `iatse665` COLLATE 'utf8_general_ci' ;
 #GRANT ALL ON `iatse665`.* TO 'default'@'%' ;
 
+#CREATE DATABASE IF NOT EXISTS `ibew124` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `ibew124`.* TO 'default'@'%' ;
+
 #CREATE DATABASE IF NOT EXISTS `ibew105` COLLATE 'utf8_general_ci' ;
 #GRANT ALL ON `ibew105`.* TO 'default'@'%' ;
 
