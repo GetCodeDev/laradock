@@ -312,6 +312,7 @@ services:
             - union.iatse15
             - union.iatse22
             - union.iatse665
+            - union.ibew124
             - union.ibew105
             - union.import
             - union.ncsrcc
@@ -345,6 +346,7 @@ services:
             - union.iatse15
             - union.iatse22
             - union.iatse665
+            - union.ibew124
             - union.ibew105
             - union.import
             - union.ncsrcc
