@@ -118,6 +118,9 @@
 #CREATE DATABASE IF NOT EXISTS `ua798` COLLATE 'utf8_general_ci' ;
 #GRANT ALL ON `ua798`.* TO 'default'@'%' ;
 
+#CREATE DATABASE IF NOT EXISTS `kc249` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `kc249`.* TO 'default'@'%' ;
+
 #------------------------------------------------------------------------------#
 
 

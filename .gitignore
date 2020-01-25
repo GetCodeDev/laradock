@@ -18,5 +18,7 @@
 
 .DS_Store
 
+/mariadb/docker-entrypoint-initdb.d/*.gz
+
 workspace/union
 workspace/union.pub
