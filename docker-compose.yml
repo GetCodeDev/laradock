@@ -334,6 +334,7 @@ services:
             - union.ua467
             - union.ua550
             - union.ua798
+            - union.adhoc
         backend:
           aliases:
             - union.ala
@@ -368,6 +369,7 @@ services:
             - union.ua467
             - union.ua550
             - union.ua798
+            - union.adhoc
 
 ### Blackfire ########################################
     blackfire:
