@@ -335,6 +335,8 @@ services:
             - union.ua550
             - union.ua798
             - union.adhoc
+            - union.help
+            - union.test
         backend:
           aliases:
             - union.ala
@@ -370,6 +372,8 @@ services:
             - union.ua550
             - union.ua798
             - union.adhoc
+            - union.help
+            - union.test
 
 ### Blackfire ########################################
     blackfire:
