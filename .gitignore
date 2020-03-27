@@ -22,3 +22,7 @@
 
 workspace/union
 workspace/union.pub
+workspace/woo.pem
+
+php-fpm/union
+php-fpm/union.pub
