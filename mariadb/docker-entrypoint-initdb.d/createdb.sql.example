@@ -130,6 +130,9 @@
 #CREATE DATABASE IF NOT EXISTS `test` COLLATE 'utf8_general_ci' ;
 #GRANT ALL ON `test`.* TO 'default'@'%' ;
 
+#CREATE DATABASE IF NOT EXISTS `apa8380` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `apa8380`.* TO 'default'@'%' ;
+
 #------------------------------------------------------------------------------#
 
 
