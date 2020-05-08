@@ -343,6 +343,7 @@ services:
             - union.ua198
             - union.ua230
             - union.ua467
+            - union.apa8380
             - union.ua550
             - union.ua798
             - union.adhoc
@@ -380,6 +381,7 @@ services:
             - union.ua198
             - union.ua230
             - union.ua467
+            - union.apa8380
             - union.ua550
             - union.ua798
             - union.adhoc
