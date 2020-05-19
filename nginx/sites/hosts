@@ -34,7 +34,7 @@
 127.0.0.1    union.ua230
 127.0.0.1    union.ua32
 127.0.0.1    union.ua467
-127.0.0.1    union.apa8380
+127.0.0.1    union.apa2118
 127.0.0.1    union.ua550
 127.0.0.1    union.ua798
 127.0.0.1    union.ua8
@@ -42,3 +42,5 @@
 127.0.0.1    union.adhoc
 127.0.0.1    union.help
 127.0.0.1    union.test
+127.0.0.1    union.laravel7
+127.0.0.1    union.cartalyst-laravel7
