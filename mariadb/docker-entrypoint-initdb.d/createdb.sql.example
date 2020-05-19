@@ -130,8 +130,14 @@
 #CREATE DATABASE IF NOT EXISTS `test` COLLATE 'utf8_general_ci' ;
 #GRANT ALL ON `test`.* TO 'default'@'%' ;
 
-#CREATE DATABASE IF NOT EXISTS `apa8380` COLLATE 'utf8_general_ci' ;
-#GRANT ALL ON `apa8380`.* TO 'default'@'%' ;
+#CREATE DATABASE IF NOT EXISTS `apa2118` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `apa2118`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `laravel7` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `laravel7`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `cartalyst_laravel7` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `cartalyst_laravel7`.* TO 'default'@'%' ;
 
 #------------------------------------------------------------------------------#
 

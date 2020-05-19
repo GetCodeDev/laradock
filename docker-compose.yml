@@ -343,12 +343,14 @@ services:
             - union.ua198
             - union.ua230
             - union.ua467
-            - union.apa8380
+            - union.apa2118
             - union.ua550
             - union.ua798
             - union.adhoc
             - union.help
             - union.test
+            - union.laravel7
+            - union.cartalyst-laravel7
         backend:
           aliases:
             - union.ala
@@ -381,12 +383,14 @@ services:
             - union.ua198
             - union.ua230
             - union.ua467
-            - union.apa8380
+            - union.apa2118
             - union.ua550
             - union.ua798
             - union.adhoc
             - union.help
             - union.test
+            - union.laravel7
+            - union.cartalyst-laravel7
 
 ### Blackfire ########################################
     blackfire:
