@@ -325,6 +325,7 @@ services:
             - union.iatse665
             - union.ibew124
             - union.ibew105
+            - union.iw377
             - union.import
             - union.ncsrcc
             - union.oetraining
@@ -365,6 +366,7 @@ services:
             - union.iatse665
             - union.ibew124
             - union.ibew105
+            - union.iw377
             - union.import
             - union.ncsrcc
             - union.oetraining
