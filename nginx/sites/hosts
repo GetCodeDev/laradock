@@ -6,6 +6,8 @@
 127.0.0.1    union.cats831
 127.0.0.1    union.cscrc
 127.0.0.1    union.demo1
+127.0.0.1    union.demo2
+127.0.0.1    union.demo3
 127.0.0.1    union.flcrc
 
 127.0.0.1    union.iatse15
@@ -14,6 +16,7 @@
 
 127.0.0.1    union.ibew124
 127.0.0.1    union.ibew105
+127.0.0.1    union.iw377
 127.0.0.1    union.ncsrcc
 127.0.0.1    union.oetraining
 

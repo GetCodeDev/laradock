@@ -40,6 +40,12 @@
 #CREATE DATABASE IF NOT EXISTS `demo1` COLLATE 'utf8_general_ci' ;
 #GRANT ALL ON `demo1`.* TO 'default'@'%' ;
 
+#CREATE DATABASE IF NOT EXISTS `demo2` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `demo2`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `demo3` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `demo3`.* TO 'default'@'%' ;
+
 #CREATE DATABASE IF NOT EXISTS `flcrc` COLLATE 'utf8_general_ci' ;
 #GRANT ALL ON `flcrc`.* TO 'default'@'%' ;
 

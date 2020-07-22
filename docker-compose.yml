@@ -319,12 +319,15 @@ services:
             - union.cats831
             - union.cscrc
             - union.demo1
+            - union.demo2
+            - union.demo3
             - union.flcrc
             - union.iatse15
             - union.iatse22
             - union.iatse665
             - union.ibew124
             - union.ibew105
+            - union.iw377
             - union.import
             - union.ncsrcc
             - union.oetraining
@@ -359,12 +362,15 @@ services:
             - union.cats831
             - union.cscrc
             - union.demo1
+            - union.demo2
+            - union.demo3
             - union.flcrc
             - union.iatse15
             - union.iatse22
             - union.iatse665
             - union.ibew124
             - union.ibew105
+            - union.iw377
             - union.import
             - union.ncsrcc
             - union.oetraining
