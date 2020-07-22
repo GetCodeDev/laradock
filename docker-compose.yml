@@ -319,6 +319,8 @@ services:
             - union.cats831
             - union.cscrc
             - union.demo1
+            - union.demo2
+            - union.demo3
             - union.flcrc
             - union.iatse15
             - union.iatse22
@@ -360,6 +362,8 @@ services:
             - union.cats831
             - union.cscrc
             - union.demo1
+            - union.demo2
+            - union.demo3
             - union.flcrc
             - union.iatse15
             - union.iatse22
