@@ -139,6 +139,9 @@
 #CREATE DATABASE IF NOT EXISTS `apa2118` COLLATE 'utf8_general_ci' ;
 #GRANT ALL ON `apa2118`.* TO 'default'@'%' ;
 
+CREATE DATABASE IF NOT EXISTS `mail` COLLATE 'utf8_general_ci' ;
+GRANT ALL ON `mail`.* TO 'default'@'%' ;
+
 #CREATE DATABASE IF NOT EXISTS `laravel7` COLLATE 'utf8_general_ci' ;
 #GRANT ALL ON `laravel7`.* TO 'default'@'%' ;
 
