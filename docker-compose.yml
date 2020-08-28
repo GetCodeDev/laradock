@@ -329,6 +329,7 @@ services:
             - union.ibew124
             - union.ibew105
             - union.iw377
+            - union.iwl397
             - union.import
             - union.ncsrcc
             - union.oetraining
@@ -373,6 +374,7 @@ services:
             - union.ibew124
             - union.ibew105
             - union.iw377
+            - union.iwl397
             - union.import
             - union.ncsrcc
             - union.oetraining
