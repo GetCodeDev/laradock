@@ -17,6 +17,7 @@
 127.0.0.1    union.ibew124
 127.0.0.1    union.ibew105
 127.0.0.1    union.iw377
+127.0.0.1    union.iwl397
 127.0.0.1    union.ncsrcc
 127.0.0.1    union.oetraining
 
@@ -43,6 +44,8 @@
 127.0.0.1    union.ua8
 
 127.0.0.1    union.mail
+127.0.0.1    union.portal
+127.0.0.1    union.mars
 127.0.0.1    union.adhoc
 127.0.0.1    union.help
 127.0.0.1    union.test

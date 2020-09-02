@@ -329,6 +329,7 @@ services:
             - union.ibew124
             - union.ibew105
             - union.iw377
+            - union.iwl397
             - union.import
             - union.ncsrcc
             - union.oetraining
@@ -352,6 +353,8 @@ services:
             - union.ua798
             - union.adhoc
             - union.mail
+            - union.portal
+            - union.mars
             - union.help
             - union.test
             - union.laravel7
@@ -373,6 +376,7 @@ services:
             - union.ibew124
             - union.ibew105
             - union.iw377
+            - union.iwl397
             - union.import
             - union.ncsrcc
             - union.oetraining
@@ -396,6 +400,8 @@ services:
             - union.ua798
             - union.adhoc
             - union.mail
+            - union.portal
+            - union.mars
             - union.help
             - union.test
             - union.laravel7
