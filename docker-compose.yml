@@ -353,6 +353,8 @@ services:
             - union.ua798
             - union.adhoc
             - union.mail
+            - union.portal
+            - union.mars
             - union.help
             - union.test
             - union.laravel7
@@ -398,6 +400,8 @@ services:
             - union.ua798
             - union.adhoc
             - union.mail
+            - union.portal
+            - union.mars
             - union.help
             - union.test
             - union.laravel7

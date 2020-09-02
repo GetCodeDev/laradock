@@ -148,6 +148,11 @@ GRANT ALL ON `mail`.* TO 'default'@'%' ;
 #CREATE DATABASE IF NOT EXISTS `cartalyst_laravel7` COLLATE 'utf8_general_ci' ;
 #GRANT ALL ON `cartalyst_laravel7`.* TO 'default'@'%' ;
 
+#CREATE DATABASE IF NOT EXISTS `portal` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `portal`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `portal` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `portal`.* TO 'default'@'%' ;
 #------------------------------------------------------------------------------#
 
 
