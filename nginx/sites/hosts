@@ -47,6 +47,7 @@
 127.0.0.1    union.portal
 127.0.0.1    union.mars
 127.0.0.1    union.adhoc
+127.0.0.1    union.hbpoa
 127.0.0.1    union.help
 127.0.0.1    union.test
 127.0.0.1    union.laravel7
