@@ -351,6 +351,7 @@ services:
             - union.apa2118
             - union.ua550
             - union.ua798
+            - union.hbpoa
             - union.adhoc
             - union.mail
             - union.portal
@@ -398,6 +399,7 @@ services:
             - union.apa2118
             - union.ua550
             - union.ua798
+            - union.hbpoa
             - union.adhoc
             - union.mail
             - union.portal
