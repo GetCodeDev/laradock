@@ -332,6 +332,7 @@ services:
             - union.iwl397
             - union.import
             - union.ncsrcc
+            - union.nwci
             - union.oetraining
             - union.opeiu29
             - union.opeiu30
@@ -380,6 +381,7 @@ services:
             - union.iwl397
             - union.import
             - union.ncsrcc
+            - union.nwci
             - union.oetraining
             - union.opeiu29
             - union.opeiu30
