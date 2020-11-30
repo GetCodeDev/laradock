@@ -323,6 +323,7 @@ services:
             - union.demo2
             - union.demo3
             - union.flcrc
+            - union.iatse107
             - union.iatse15
             - union.iatse22
             - union.iatse665
@@ -372,6 +373,7 @@ services:
             - union.demo2
             - union.demo3
             - union.flcrc
+            - union.iatse107
             - union.iatse15
             - union.iatse22
             - union.iatse665
