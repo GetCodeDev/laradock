@@ -335,6 +335,7 @@ services:
             - union.ncsrcc
             - union.nwci
             - union.oetraining
+            - union.opcmia528
             - union.opeiu29
             - union.opeiu30
             - union.pnsu
@@ -385,6 +386,7 @@ services:
             - union.ncsrcc
             - union.nwci
             - union.oetraining
+            - union.opcmia528
             - union.opeiu29
             - union.opeiu30
             - union.pnsu
