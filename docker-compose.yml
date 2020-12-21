@@ -331,6 +331,7 @@ services:
             - union.ibew105
             - union.iw377
             - union.iwl397
+            - union.iwl8
             - union.import
             - union.ncsrcc
             - union.nwci
@@ -382,6 +383,7 @@ services:
             - union.ibew105
             - union.iw377
             - union.iwl397
+            - union.iwl8
             - union.import
             - union.ncsrcc
             - union.nwci
