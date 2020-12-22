@@ -329,6 +329,7 @@ services:
             - union.iatse665
             - union.ibew124
             - union.ibew105
+            - union.iupatdc5
             - union.iw377
             - union.iwl397
             - union.iwl8
@@ -381,6 +382,7 @@ services:
             - union.iatse665
             - union.ibew124
             - union.ibew105
+            - union.iupatdc5
             - union.iw377
             - union.iwl397
             - union.iwl8
