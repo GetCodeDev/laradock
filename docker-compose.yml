@@ -318,6 +318,8 @@ services:
             - union.all
             - union.aocds
             - union.cats831
+            - union.cfa
+            - union.cfpa
             - union.cscrc
             - union.demo1
             - union.demo2
@@ -371,6 +373,8 @@ services:
             - union.all
             - union.aocds
             - union.cats831
+            - union.cfa
+            - union.cfpa
             - union.cscrc
             - union.demo1
             - union.demo2
