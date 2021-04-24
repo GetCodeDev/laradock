@@ -18,9 +18,18 @@ RUN apk update \
     && apk add --no-cache openssl \
     && apk add --no-cache bash
 
+RUN apk add --no-cache curl
+
 RUN set -x ; \
     addgroup -g 82 -S www-data ; \
     adduser -u 82 -D -S -G www-data www-data && exit 0 ; exit 1
+
+# RUN set -x ; \
+#     addgroup -g 1000 -S www-data ; \
+#     adduser -u 1000 -D -S -G www-data www-data && exit 0 ; exit 1
+
+# Let usermod, groupmod available in alpine and change the ids
+#RUN apk add --no-cache shadow && usermod -u 1000 -o www-data && groupmod -g 1000 -o www-data
 
 ARG PHP_UPSTREAM_CONTAINER=php-fpm
 ARG PHP_UPSTREAM_PORT=9000
@@ -39,4 +48,4 @@ ADD ./startup.sh /opt/startup.sh
 RUN sed -i 's/\r//g' /opt/startup.sh
 CMD ["/bin/bash", "/opt/startup.sh"]
 
-EXPOSE 80 443
+EXPOSE 80 81 443
