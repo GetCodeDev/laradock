@@ -10,6 +10,7 @@
 127.0.0.1    union.demo3
 127.0.0.1    union.flcrc
 
+127.0.0.1    union.iatse107
 127.0.0.1    union.iatse15
 127.0.0.1    union.iatse22
 127.0.0.1    union.iatse665
@@ -17,9 +18,16 @@
 127.0.0.1    union.ibew124
 127.0.0.1    union.ibew105
 127.0.0.1    union.iw377
+127.0.0.1    union.iwl229
 127.0.0.1    union.iwl397
+127.0.0.1    union.iwl8
 127.0.0.1    union.ncsrcc
+127.0.0.1    union.nwci
 127.0.0.1    union.oetraining
+127.0.0.1    union.opcmia528
+127.0.0.1    union.cfa
+127.0.0.1    union.cfpa
+127.0.0.1    union.iupatdc5
 
 127.0.0.1    union.opeiu29
 127.0.0.1    union.opeiu30
@@ -30,18 +38,23 @@
 127.0.0.1    union.pseofwa
 127.0.0.1    union.quadc
 127.0.0.1    union.seiu87
+127.0.0.1    union.hofstra
 127.0.0.1    union.sign510
 127.0.0.1    union.swcarpenters
 127.0.0.1    union.teamsters456
+127.0.0.1    union.teamstersnac
+127.0.0.1    union.secrc
 
 127.0.0.1    union.ua198
 127.0.0.1    union.ua230
 127.0.0.1    union.ua32
 127.0.0.1    union.ua467
 127.0.0.1    union.apa2118
+127.0.0.1    union.teamster
 127.0.0.1    union.ua550
 127.0.0.1    union.ua798
 127.0.0.1    union.ua8
+127.0.0.1    union.wsrjb
 
 127.0.0.1    union.mail
 127.0.0.1    union.portal
@@ -51,4 +64,4 @@
 127.0.0.1    union.help
 127.0.0.1    union.test
 127.0.0.1    union.laravel7
-127.0.0.1    union.cartalyst-laravel7
+127.0.0.1    union.laravel7-test

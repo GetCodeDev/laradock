@@ -16,7 +16,14 @@
 ###     mysql -u root -p < /docker-entrypoint-initdb.d/createdb.sql
 ###
 
+#CREATE DATABASE IF NOT EXISTS `dev_db_1` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `dev_db_1`.* TO 'default'@'%' ;
 
+#CREATE DATABASE IF NOT EXISTS `dev_db_2` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `dev_db_2`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `dev_db_3` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `dev_db_3`.* TO 'default'@'%' ;
 
 #------------------------------------------------------------------------------#
 # DEFAULT Databases
@@ -64,6 +71,18 @@
 #CREATE DATABASE IF NOT EXISTS `ibew105` COLLATE 'utf8_general_ci' ;
 #GRANT ALL ON `ibew105`.* TO 'default'@'%' ;
 
+#CREATE DATABASE IF NOT EXISTS `iw377` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `iw377`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `iwl229` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `iwl229`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `iwl397` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `iwl397`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `iwl8` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `iwl8`.* TO 'default'@'%' ;
+
 #CREATE DATABASE IF NOT EXISTS `import` COLLATE 'utf8_general_ci' ;
 #GRANT ALL ON `import`.* TO 'default'@'%' ;
 
@@ -96,6 +115,9 @@
 
 #CREATE DATABASE IF NOT EXISTS `seiu87` COLLATE 'utf8_general_ci' ;
 #GRANT ALL ON `seiu87`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `hofstra` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `hofstra`.* TO 'default'@'%' ;
 
 #CREATE DATABASE IF NOT EXISTS `swcarpenters` COLLATE 'utf8_general_ci' ;
 #GRANT ALL ON `swcarpenters`.* TO 'default'@'%' ;
@@ -139,20 +161,30 @@
 #CREATE DATABASE IF NOT EXISTS `apa2118` COLLATE 'utf8_general_ci' ;
 #GRANT ALL ON `apa2118`.* TO 'default'@'%' ;
 
-CREATE DATABASE IF NOT EXISTS `mail` COLLATE 'utf8_general_ci' ;
-GRANT ALL ON `mail`.* TO 'default'@'%' ;
+#CREATE DATABASE IF NOT EXISTS `teamstersnac` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `teamstersnac`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `secrc` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `secrc`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `mail` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `mail`.* TO 'default'@'%' ;
+
+#CREATE DATABASE IF NOT EXISTS `opcmia528` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `opcmia528`.* TO 'default'@'%' ;
 
 #CREATE DATABASE IF NOT EXISTS `laravel7` COLLATE 'utf8_general_ci' ;
 #GRANT ALL ON `laravel7`.* TO 'default'@'%' ;
 
-#CREATE DATABASE IF NOT EXISTS `cartalyst_laravel7` COLLATE 'utf8_general_ci' ;
-#GRANT ALL ON `cartalyst_laravel7`.* TO 'default'@'%' ;
+#CREATE DATABASE IF NOT EXISTS `wsrjb` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `wsrjb`.* TO 'default'@'%' ;
 
-#CREATE DATABASE IF NOT EXISTS `portal` COLLATE 'utf8_general_ci' ;
-#GRANT ALL ON `portal`.* TO 'default'@'%' ;
+#CREATE DATABASE IF NOT EXISTS `cfa` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `cfa`.* TO 'default'@'%' ;
 
-#CREATE DATABASE IF NOT EXISTS `portal` COLLATE 'utf8_general_ci' ;
-#GRANT ALL ON `portal`.* TO 'default'@'%' ;
+#CREATE DATABASE IF NOT EXISTS `cfpa` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `cfpa`.* TO 'default'@'%' ;
+
 #------------------------------------------------------------------------------#
 
 

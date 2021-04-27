@@ -13,8 +13,8 @@
 #
 
 ARG LARADOCK_PHP_VERSION
-
-FROM laradock/php-fpm:2.5-${LARADOCK_PHP_VERSION}
+ARG BASE_IMAGE_TAG_PREFIX=latest
+FROM laradock/php-fpm:${BASE_IMAGE_TAG_PREFIX}-${LARADOCK_PHP_VERSION}
 
 LABEL maintainer="Mahmoud Zalt <mahmoud@zalt.me>"
 
@@ -23,10 +23,14 @@ ARG LARADOCK_PHP_VERSION
 # Set Environment Variables
 ENV DEBIAN_FRONTEND noninteractive
 
+# If you're in China, or you need to change sources, will be set CHANGE_SOURCE to true in .env.
+
 ARG CHANGE_SOURCE=false
 RUN if [ ${CHANGE_SOURCE} = true ]; then \
     # Change application source from deb.debian.org to aliyun source
-    sed -i 's/deb.debian.org/mirrors.aliyun.com/' /etc/apt/sources.list \
+    sed -i 's/deb.debian.org/mirrors.aliyun.com/' /etc/apt/sources.list && \
+    sed -i 's/security.debian.org/mirrors.aliyun.com/' /etc/apt/sources.list && \
+    sed -i 's/security-cdn.debian.org/mirrors.aliyun.com/' /etc/apt/sources.list \
 ;fi
 
 # always run apt update when start and after add new source list, then clean up at end.
@@ -47,12 +51,14 @@ RUN set -xe; \
       #
       # next lines are here becase there is no auto build on dockerhub see https://github.com/laradock/laradock/pull/1903#issuecomment-463142846
       libzip-dev zip unzip && \
-      docker-php-ext-configure zip --with-libzip && \
+      if [ ${LARADOCK_PHP_VERSION} = "7.3" ] || [ ${LARADOCK_PHP_VERSION} = "7.4" ]; then \
+        docker-php-ext-configure zip; \
+      else \
+        docker-php-ext-configure zip --with-libzip; \
+      fi && \
       # Install the zip extension
       docker-php-ext-install zip && \
       php -m | grep -q 'zip'
-
-
 
 #
 #--------------------------------------------------------------------------
@@ -68,52 +74,51 @@ RUN set -xe; \
 ###########################################################################
 # Composer:
 ###########################################################################
-
-USER root
-
-RUN cd /var/www/
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-RUN php -r "if (hash_file('sha384', 'composer-setup.php') === 'e5325b19b381bfd88ce90a5ddb7823406b2a38cff6bb704b0acc289a09c8128d4a8ce2bbafcd1fcbdc38666422fe2806') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-RUN php composer-setup.php
-RUN php -r "unlink('composer-setup.php');"
-RUN mv composer.phar /usr/bin/composer
-
-# Add the composer.json
-COPY ./composer.json /home/www-data/.composer/composer.json
-
-# Add the auth.json for magento 2 credentials
-COPY ./auth.json /home/www-data/.composer/auth.json
-
-# Make sure that ~/.composer belongs to www-data
-RUN chown -R www-data:www-data /home/www-data/.composer
-
-# Export composer vendor path
-RUN echo "" >> ~/.bashrc && \
-    echo 'export PATH="$HOME/.composer/vendor/bin:$PATH"' >> ~/.bashrc
-
-# Check if global install need to be ran
-ARG COMPOSER_GLOBAL_INSTALL=false
-ENV COMPOSER_GLOBAL_INSTALL ${COMPOSER_GLOBAL_INSTALL}
-
-# Check if auth file is disabled
-ARG COMPOSER_AUTH=false
-ENV COMPOSER_AUTH ${COMPOSER_AUTH}
-
-RUN if [ ${COMPOSER_AUTH} = false ]; then \
-    # remove the file
-    rm /home/www-data/.composer/auth.json \
-;fi
-
-ARG COMPOSER_REPO_PACKAGIST
-ENV COMPOSER_REPO_PACKAGIST ${COMPOSER_REPO_PACKAGIST}
-
-RUN if [ ${COMPOSER_REPO_PACKAGIST} ]; then \
-    composer config -g repo.packagist composer ${COMPOSER_REPO_PACKAGIST} \
-;fi
-
-# Export composer vendor path
-RUN echo "" >> ~/.bashrc && \
-    echo 'export PATH="~/.composer/vendor/bin:$PATH"' >> ~/.bashrc
+# USER root
+#
+# RUN cd /var/www/
+# RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+# RUN php -r "if (hash_file('sha384', 'composer-setup.php') === '795f976fe0ebd8b75f26a6dd68f78fd3453ce79f32ecb33e7fd087d39bfeb978342fb73ac986cd4f54edd0dc902601dc') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+# RUN php composer-setup.php
+# RUN php -r "unlink('composer-setup.php');"
+# RUN mv composer.phar /usr/bin/composer
+#
+# # Add the composer.json
+# COPY ./composer.json /home/www-data/.composer/composer.json
+#
+# # Add the auth.json for magento 2 credentials
+# COPY ./auth.json /home/www-data/.composer/auth.json
+#
+# # Make sure that ~/.composer belongs to www-data
+# RUN chown -R www-data:www-data /home/www-data/.composer
+#
+# # Export composer vendor path
+# RUN echo "" >> ~/.bashrc && \
+#     echo 'export PATH="$HOME/.composer/vendor/bin:$PATH"' >> ~/.bashrc
+#
+# # Check if global install need to be ran
+# ARG COMPOSER_GLOBAL_INSTALL=false
+# ENV COMPOSER_GLOBAL_INSTALL ${COMPOSER_GLOBAL_INSTALL}
+#
+# # Check if auth file is disabled
+# ARG COMPOSER_AUTH=false
+# ENV COMPOSER_AUTH ${COMPOSER_AUTH}
+#
+# RUN if [ ${COMPOSER_AUTH} = false ]; then \
+#     # remove the file
+#     rm /home/www-data/.composer/auth.json \
+# ;fi
+#
+# ARG COMPOSER_REPO_PACKAGIST
+# ENV COMPOSER_REPO_PACKAGIST ${COMPOSER_REPO_PACKAGIST}
+#
+# RUN if [ ${COMPOSER_REPO_PACKAGIST} ]; then \
+#     composer config -g repo.packagist composer ${COMPOSER_REPO_PACKAGIST} \
+# ;fi
+#
+# # Export composer vendor path
+# RUN echo "" >> ~/.bashrc && \
+#     echo 'export PATH="~/.composer/vendor/bin:$PATH"' >> ~/.bashrc
 
 ###########################################################################
 # Node / NVM:
@@ -193,17 +198,33 @@ RUN if [ ${INSTALL_NODE} = true ]; then \
 
 RUN if [ ${NPM_REGISTRY} ]; then \
     . ~/.bashrc && npm config set registry ${NPM_REGISTRY} \
+
 ;fi
 
 ###########################################################################
-# Non-root user : PHPUnit path
+# BZ2:
 ###########################################################################
 
-# add ./vendor/bin to non-root user's bashrc (needed for phpunit)
-USER root
+ARG INSTALL_BZ2=false
+RUN if [ ${INSTALL_BZ2} = true ]; then \
+  apt-get -y install libbz2-dev; \
+  docker-php-ext-install bz2 \
+;fi
 
-RUN echo "" >> ~/.bashrc && \
-    echo 'export PATH="/var/www/vendor/bin:$PATH"' >> ~/.bashrc
+###########################################################################
+# GMP (GNU Multiple Precision):
+###########################################################################
+
+ARG INSTALL_GMP=false
+
+RUN if [ ${INSTALL_GMP} = true ]; then \
+    # Install the GMP extension
+	  apt-get install -y libgmp-dev && \
+    if [ $(php -r "echo PHP_MAJOR_VERSION;") = "5" ]; then \
+      ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h \
+    ;fi && \
+    docker-php-ext-install gmp \
+;fi
 
 ###########################################################################
 # SSH2:
@@ -217,7 +238,7 @@ RUN if [ ${INSTALL_SSH2} = true ]; then \
     if [ $(php -r "echo PHP_MAJOR_VERSION;") = "5" ]; then \
         pecl install -a ssh2-0.13; \
     else \
-        pecl install -a ssh2-1.1.2; \
+        pecl install -a ssh2-1.2; \
     fi && \
     docker-php-ext-enable ssh2 \
 ;fi
@@ -299,7 +320,11 @@ RUN if [ ${INSTALL_XDEBUG} = true ]; then \
   if [ $(php -r "echo PHP_MAJOR_VERSION;") = "5" ]; then \
     pecl install xdebug-2.5.5; \
   else \
-    pecl install xdebug; \
+    if [ $(php -r "echo PHP_MINOR_VERSION;") = "0" ]; then \
+      pecl install xdebug-2.9.0; \
+    else \
+      pecl install xdebug; \
+    fi \
   fi && \
   docker-php-ext-enable xdebug \
 ;fi
@@ -310,6 +335,23 @@ COPY ./xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 RUN sed -i "s/xdebug.remote_autostart=0/xdebug.remote_autostart=1/" /usr/local/etc/php/conf.d/xdebug.ini && \
     sed -i "s/xdebug.remote_enable=0/xdebug.remote_enable=1/" /usr/local/etc/php/conf.d/xdebug.ini && \
     sed -i "s/xdebug.cli_color=0/xdebug.cli_color=1/" /usr/local/etc/php/conf.d/xdebug.ini
+
+###########################################################################
+# pcov:
+###########################################################################
+
+USER root
+
+ARG INSTALL_PCOV=false
+
+RUN if [ ${INSTALL_PCOV} = true ]; then \
+  if [ $(php -r "echo PHP_MAJOR_VERSION;") = "7" ]; then \
+    if [ $(php -r "echo PHP_MINOR_VERSION;") != "0" ]; then \
+      pecl install pcov && \
+      docker-php-ext-enable pcov \
+    ;fi \
+  ;fi \
+;fi
 
 ###########################################################################
 # Phpdbg:
@@ -412,9 +454,9 @@ RUN if [ ${INSTALL_MONGO} = true ]; then \
 ARG INSTALL_XHPROF=false
 
 RUN if [ ${INSTALL_XHPROF} = true ]; then \
-    # Install the php xhprof extension 
+    # Install the php xhprof extension
     if [ $(php -r "echo PHP_MAJOR_VERSION;") = 7 ]; then \
-      curl -L -o /tmp/xhprof.tar.gz "https://github.com/tideways/php-xhprof-extension/archive/v4.1.7.tar.gz"; \
+      curl -L -o /tmp/xhprof.tar.gz "https://github.com/tideways/php-xhprof-extension/archive/v5.0.1.tar.gz"; \
     else \ 
       curl -L -o /tmp/xhprof.tar.gz "https://codeload.github.com/phacility/xhprof/tar.gz/master"; \
     fi \
@@ -446,7 +488,7 @@ ARG INSTALL_AMQP=false
 RUN if [ ${INSTALL_AMQP} = true ]; then \
     # download and install manually, to make sure it's compatible with ampq installed by pecl later
     # install cmake first
-    apt-get update && apt-get -y install cmake && \
+    apt-get -y install cmake && \
     curl -L -o /tmp/rabbitmq-c.tar.gz https://github.com/alanxz/rabbitmq-c/archive/master.tar.gz && \
     mkdir -p rabbitmq-c && \
     tar -C rabbitmq-c -zxvf /tmp/rabbitmq-c.tar.gz --strip 1 && \
@@ -468,7 +510,6 @@ RUN if [ ${INSTALL_AMQP} = true ]; then \
 ARG INSTALL_GEARMAN=false
 
 RUN if [ ${INSTALL_GEARMAN} = true ]; then \
-    apt-get update && \
     apt-get -y install libgearman-dev && \
     cd /tmp && \
     curl -L https://github.com/wcgallego/pecl-gearman/archive/gearman-2.0.5.zip -O && \
@@ -504,21 +545,6 @@ ARG INSTALL_BCMATH=false
 RUN if [ ${INSTALL_BCMATH} = true ]; then \
     # Install the bcmath extension
     docker-php-ext-install bcmath \
-;fi
-
-###########################################################################
-# GMP (GNU Multiple Precision):
-###########################################################################
-
-ARG INSTALL_GMP=false
-
-RUN if [ ${INSTALL_GMP} = true ]; then \
-    # Install the GMP extension
-	  apt-get install -y libgmp-dev && \
-    if [ $(php -r "echo PHP_MAJOR_VERSION;") = "5" ]; then \
-      ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h \
-    ;fi && \
-    docker-php-ext-install gmp \
 ;fi
 
 ###########################################################################
@@ -587,6 +613,51 @@ RUN set -xe; \
     && rm /tmp/aerospike-client-php.tar.gz \
     && docker-php-ext-enable aerospike \
 ;fi
+
+###########################################################################
+# PHP OCI8:
+###########################################################################
+
+ARG INSTALL_OCI8=false
+
+ENV LD_LIBRARY_PATH="/opt/oracle/instantclient_12_1"
+ENV OCI_HOME="/opt/oracle/instantclient_12_1"
+ENV OCI_LIB_DIR="/opt/oracle/instantclient_12_1"
+ENV OCI_INCLUDE_DIR="/opt/oracle/instantclient_12_1/sdk/include"
+ENV OCI_VERSION=12
+
+RUN if [ ${INSTALL_OCI8} = true ]; then \
+    # Install wget
+    apt-get update && apt-get install --no-install-recommends -y wget \
+    # Install Oracle Instantclient
+    && mkdir /opt/oracle \
+        && cd /opt/oracle \
+        && wget https://github.com/diogomascarenha/oracle-instantclient/raw/master/instantclient-basic-linux.x64-12.1.0.2.0.zip \
+        && wget https://github.com/diogomascarenha/oracle-instantclient/raw/master/instantclient-sdk-linux.x64-12.1.0.2.0.zip \
+        && unzip /opt/oracle/instantclient-basic-linux.x64-12.1.0.2.0.zip -d /opt/oracle \
+        && unzip /opt/oracle/instantclient-sdk-linux.x64-12.1.0.2.0.zip -d /opt/oracle \
+        && ln -s /opt/oracle/instantclient_12_1/libclntsh.so.12.1 /opt/oracle/instantclient_12_1/libclntsh.so \
+        && ln -s /opt/oracle/instantclient_12_1/libclntshcore.so.12.1 /opt/oracle/instantclient_12_1/libclntshcore.so \
+        && ln -s /opt/oracle/instantclient_12_1/libocci.so.12.1 /opt/oracle/instantclient_12_1/libocci.so \
+        && rm -rf /opt/oracle/*.zip \
+    # Install PHP extensions deps
+    && apt-get update \
+        && apt-get install --no-install-recommends -y \
+            libaio-dev \
+            freetds-dev && \
+    # Install PHP extensions
+    if [ $(php -r "echo PHP_MAJOR_VERSION;") = "5" ]; then \
+      echo 'instantclient,/opt/oracle/instantclient_12_1/' | pecl install oci8-2.0.10; \
+    else \
+      echo 'instantclient,/opt/oracle/instantclient_12_1/' | pecl install oci8; \
+    fi \
+        && docker-php-ext-configure pdo_oci --with-pdo-oci=instantclient,/opt/oracle/instantclient_12_1,12.1 \
+        && docker-php-ext-configure pdo_dblib --with-libdir=/lib/x86_64-linux-gnu \
+        && docker-php-ext-install \
+                pdo_oci \
+        && docker-php-ext-enable \
+                oci8 \
+  ;fi
 
 ###########################################################################
 # IonCube Loader:
@@ -734,6 +805,16 @@ RUN if [ ${INSTALL_IMAGEMAGICK} = true ]; then \
 ;fi
 
 ###########################################################################
+# SMB:
+###########################################################################
+
+ARG INSTALL_SMB=false
+
+RUN if [ ${INSTALL_SMB} = true ]; then \
+    apt-get install -y smbclient php-smbclient coreutils \
+;fi
+
+###########################################################################
 # IMAP:
 ###########################################################################
 
@@ -770,7 +851,14 @@ ENV LARADOCK_PHALCON_VERSION ${LARADOCK_PHALCON_VERSION}
 COPY ./phalcon.ini /usr/local/etc/php/conf.d/phalcon.ini.disable
 
 RUN if [ $INSTALL_PHALCON = true ]; then \
-    apt-get update && apt-get install -y unzip libpcre3-dev gcc make re2c \
+    apt-get update && apt-get install -y unzip libpcre3-dev gcc make re2c git automake autoconf\
+    && git clone https://github.com/jbboehr/php-psr.git \
+    && cd php-psr \
+    && phpize \
+    && ./configure \
+    && make \
+    && make test \
+    && make install \
     && curl -L -o /tmp/cphalcon.zip https://github.com/phalcon/cphalcon/archive/v${LARADOCK_PHALCON_VERSION}.zip \
     && unzip -d /tmp/ /tmp/cphalcon.zip \
     && cd /tmp/cphalcon-${LARADOCK_PHALCON_VERSION}/build \
@@ -825,6 +913,17 @@ RUN if [ ${INSTALL_RDKAFKA} = true ]; then \
 ;fi
 
 ###########################################################################
+# GETTEXT:
+###########################################################################
+
+ARG INSTALL_GETTEXT=false
+
+RUN if [ ${INSTALL_GETTEXT} = true ]; then \
+    apt-get install -y zlib1g-dev libicu-dev g++ libpq-dev libssl-dev gettext && \
+    docker-php-ext-install gettext \
+;fi
+
+###########################################################################
 # Install additional locales:
 ###########################################################################
 
@@ -849,12 +948,7 @@ USER root
 ARG INSTALL_MYSQL_CLIENT=false
 
 RUN if [ ${INSTALL_MYSQL_CLIENT} = true ]; then \
-    apt-get update -yqq && \
-    if [ ${LARADOCK_PHP_VERSION} = "7.3" ]; then \
       apt-get -y install default-mysql-client \
-    ;else \
-      apt-get -y install mysql-client \
-    ;fi \
 ;fi
 
 ###########################################################################
@@ -866,7 +960,6 @@ USER root
 ARG INSTALL_PING=false
 
 RUN if [ ${INSTALL_PING} = true ]; then \
-    apt-get update -yqq && \
     apt-get -y install inetutils-ping \
 ;fi
 
@@ -879,7 +972,6 @@ USER root
 ARG INSTALL_SSHPASS=false
 
 RUN if [ ${INSTALL_SSHPASS} = true ]; then \
-    apt-get update -yqq && \
     apt-get -y install sshpass \
 ;fi
 
@@ -892,8 +984,32 @@ USER root
 ARG INSTALL_FFMPEG=false
 
 RUN if [ ${INSTALL_FFMPEG} = true ]; then \
-    apt-get update -yqq && \
     apt-get -y install ffmpeg \
+;fi
+
+#####################################
+# wkhtmltopdf:
+#####################################
+
+USER root
+
+ARG INSTALL_WKHTMLTOPDF=false
+
+RUN if [ ${INSTALL_WKHTMLTOPDF} = true ]; then \
+    apt-get install -y \
+    libxrender1 \
+    libfontconfig1 \
+    libx11-dev \
+    libjpeg62 \
+    libxtst6 \
+    fontconfig \ 
+    libjpeg62-turbo \
+    xfonts-base \
+    xfonts-75dpi \
+    wget \
+    && wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.stretch_amd64.deb \
+    && dpkg -i wkhtmltox_0.12.6-1.stretch_amd64.deb \
+    && apt -f install \
 ;fi
 
 ###########################################################################
@@ -910,49 +1026,49 @@ RUN if [ ${INSTALL_MAILPARSE} = true ]; then \
 ;fi
 
 ###########################################################################
-# WKHTMLTOPDF
+# CacheTool:
 ###########################################################################
-ARG INSTALL_WKHTMLTOPDF=false
 
-RUN if [ ${INSTALL_WKHTMLTOPDF} = true ]; then \
- apt-get update && apt-get -y install fontconfig libxext6 libxrender1 xfonts-utils wget \
-     libfontenc1 x11-common xfonts-75dpi xfonts-base \
- && curl -L -o /tmp/wkhtmltopdf.deb https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox_0.12.5-1.stretch_amd64.deb \
- && dpkg -i --force-depends /tmp/wkhtmltopdf.deb \
+ARG INSTALL_CACHETOOL=false
+
+RUN if [ ${INSTALL_CACHETOOL} = true ]; then \
+    if [ $(php -r "echo PHP_MAJOR_VERSION;") = "7" ] && [ $(php -r "echo PHP_MINOR_VERSION;") -ge 1 ]; then \
+            curl -sO http://gordalina.github.io/cachetool/downloads/cachetool.phar; \
+    else \
+        curl http://gordalina.github.io/cachetool/downloads/cachetool-3.2.1.phar -o cachetool.phar; \
+    fi && \
+    chmod +x cachetool.phar && \
+    mv cachetool.phar /usr/local/bin/cachetool \
 ;fi
 
 ###########################################################################
-# ssh:
+# XMLRPC:
 ###########################################################################
 
+ARG INSTALL_XMLRPC=false
 
-# COPY union /var/www/id_rsa
-# COPY union.pub /var/www/id_rsa.pub
+RUN if [ ${INSTALL_XMLRPC} = true ]; then \
+    docker-php-ext-install xmlrpc \
+;fi
 
-# RUN rm -f /etc/service/sshd/down \
-#     && mkdir /root/.ssh \
-#     # && cat /var/www/id_rsa.pub >> /root/.ssh/authorized_keys \
-#         && cat /var/www/id_rsa.pub >> /root/.ssh/id_rsa.pub \
-#         && cat /var/www/id_rsa >> /root/.ssh/id_rsa \
-# #         && chmod 644 /root/.ssh/authorized_keys /root/.ssh/id_rsa.pub \
-#     && chmod 400 /root/.ssh/id_rsa \
-#     && cp -rf /root/.ssh /home/www-data \
-#     && chown -R www-data /home/www-data/.ssh
+###########################################################################
+# Downgrade Openssl:
+###########################################################################
 
-#
-# RUN rm -f /etc/service/sshd/down\
-#         && mkdir ~/.ssh \
-#         && cat /tmp/id_rsa.pub >> ~/.ssh/authorized_keys \
-#         && cat /tmp/id_rsa.pub >> ~/.ssh/id_rsa.pub \
-#         && cat /tmp/id_rsa >> ~/.ssh/id_rsa \
-#         && chmod 644 ~/.ssh/authorized_keys ~/.ssh/id_rsa.pub \
-#         && chmod 400 ~/.ssh/id_rsa
+ARG DOWNGRADE_OPENSSL_TLS_AND_SECLEVEL=false
+
+RUN if [ ${DOWNGRADE_OPENSSL_TLS_AND_SECLEVEL} = true ]; then \
+    sed -i 's,^\(MinProtocol[ ]*=\).*,\1'TLSv1.2',g' /etc/ssl/openssl.cnf \
+    && \
+    sed -i 's,^\(CipherString[ ]*=\).*,\1'DEFAULT@SECLEVEL=1',g' /etc/ssl/openssl.cnf\
+;fi
 
 ###########################################################################
 # Check PHP version:
 ###########################################################################
 
 RUN set -xe; php -v | head -n 1 | grep -q "PHP ${LARADOCK_PHP_VERSION}."
+
 #
 #--------------------------------------------------------------------------
 # Final Touch
@@ -986,6 +1102,10 @@ RUN groupmod -o -g ${PGID} www-data && \
 RUN if [ ${INSTALL_FAKETIME} = true ]; then \
     echo "/usr/lib/x86_64-linux-gnu/faketime/libfaketime.so.1" > /etc/ld.so.preload \
 ;fi
+
+# Configure locale.
+ARG LOCALE=POSIX
+ENV LC_ALL ${LOCALE}
 
 WORKDIR /var/www
 
