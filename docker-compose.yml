@@ -470,6 +470,7 @@ services:
             - union.iwl397
             - union.iwl8
             - union.import
+            - union.lbpoa
             - union.ncsrcc
             - union.nwci
             - union.oetraining
