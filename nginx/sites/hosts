@@ -21,6 +21,7 @@
 127.0.0.1    union.iwl229
 127.0.0.1    union.iwl397
 127.0.0.1    union.iwl8
+127.0.0.1    union.lbpoa
 127.0.0.1    union.ncsrcc
 127.0.0.1    union.nwci
 127.0.0.1    union.oetraining
@@ -28,6 +29,8 @@
 127.0.0.1    union.cfa
 127.0.0.1    union.cfpa
 127.0.0.1    union.iupatdc5
+127.0.0.1    union.iuoe18
+127.0.0.1    union.ua486
 
 127.0.0.1    union.opeiu29
 127.0.0.1    union.opeiu30
