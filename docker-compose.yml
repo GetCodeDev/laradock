@@ -415,6 +415,8 @@ services:
             - union.oetraining
             - union.opcmia528
             - union.iupatdc5
+            - union.iuoe18
+            - union.ua486
             - union.opeiu29
             - union.opeiu30
             - union.pnsu
@@ -476,6 +478,8 @@ services:
             - union.oetraining
             - union.opcmia528
             - union.iupatdc5
+            - union.iuoe18
+            - union.ua486
             - union.opeiu29
             - union.opeiu30
             - union.pnsu
