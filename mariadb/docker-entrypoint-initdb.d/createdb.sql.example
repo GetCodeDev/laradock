@@ -41,6 +41,9 @@
 #CREATE DATABASE IF NOT EXISTS `cats831` COLLATE 'utf8_general_ci' ;
 #GRANT ALL ON `cats831`.* TO 'default'@'%' ;
 
+#CREATE DATABASE IF NOT EXISTS `carpdc` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `carpdc`.* TO 'default'@'%' ;
+
 #CREATE DATABASE IF NOT EXISTS `cscrc` COLLATE 'utf8_general_ci' ;
 #GRANT ALL ON `cscrc`.* TO 'default'@'%' ;
 
