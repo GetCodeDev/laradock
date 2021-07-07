@@ -392,6 +392,7 @@ services:
             - union.all
             - union.aocds
             - union.cats831
+            - union.carpdc
             - union.cfa
             - union.cfpa
             - union.cscrc
@@ -410,6 +411,7 @@ services:
             - union.iwl397
             - union.iwl8
             - union.import
+            - union.lbpoa
             - union.ncsrcc
             - union.nwci
             - union.oetraining
@@ -454,6 +456,7 @@ services:
             - union.all
             - union.aocds
             - union.cats831
+            - union.carpdc
             - union.cfa
             - union.cfpa
             - union.cscrc
