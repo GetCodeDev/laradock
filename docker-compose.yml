@@ -440,6 +440,7 @@ services:
             - union.secrc
             - union.ua550
             - union.ua798
+            - union.seba
             - union.wsrjb
             - union.hbpoa
             - union.adhoc
@@ -504,6 +505,7 @@ services:
             - union.secrc
             - union.ua550
             - union.ua798
+            - union.seba
             - union.wsrjb
             - union.hbpoa
             - union.adhoc
