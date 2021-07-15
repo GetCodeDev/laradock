@@ -437,6 +437,7 @@ services:
             - union.ua467
             - union.apa2118
             - union.teamstersnac
+            - union.teamsters817
             - union.secrc
             - union.ua550
             - union.ua798
@@ -502,6 +503,7 @@ services:
             - union.ua467
             - union.apa2118
             - union.teamstersnac
+            - union.teamsters817
             - union.secrc
             - union.ua550
             - union.ua798
