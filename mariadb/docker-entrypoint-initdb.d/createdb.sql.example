@@ -170,6 +170,9 @@
 #CREATE DATABASE IF NOT EXISTS `teamstersnac` COLLATE 'utf8_general_ci' ;
 #GRANT ALL ON `teamstersnac`.* TO 'default'@'%' ;
 
+#CREATE DATABASE IF NOT EXISTS `teamsters817` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `teamsters817`.* TO 'default'@'%' ;
+
 #CREATE DATABASE IF NOT EXISTS `secrc` COLLATE 'utf8_general_ci' ;
 #GRANT ALL ON `secrc`.* TO 'default'@'%' ;
 
