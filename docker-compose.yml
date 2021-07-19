@@ -408,6 +408,7 @@ services:
             - union.ibew105
             - union.iw377
             - union.iwl229
+            - union.iwl29
             - union.iwl397
             - union.iwl8
             - union.import
@@ -474,6 +475,7 @@ services:
             - union.ibew105
             - union.iw377
             - union.iwl229
+            - union.iwl29
             - union.iwl397
             - union.iwl8
             - union.import

@@ -80,6 +80,9 @@
 #CREATE DATABASE IF NOT EXISTS `iwl229` COLLATE 'utf8_general_ci' ;
 #GRANT ALL ON `iwl229`.* TO 'default'@'%' ;
 
+#CREATE DATABASE IF NOT EXISTS `iwl29` COLLATE 'utf8_general_ci' ;
+#GRANT ALL ON `iwl29`.* TO 'default'@'%' ;
+
 #CREATE DATABASE IF NOT EXISTS `iwl397` COLLATE 'utf8_general_ci' ;
 #GRANT ALL ON `iwl397`.* TO 'default'@'%' ;
 
